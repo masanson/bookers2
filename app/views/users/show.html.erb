@@ -1,10 +1,4 @@
-<div>
-  <h2 class="B-head">User info</h2>
-  <%= image_tag @user.get_profile_image(100, 100) %>
-  <p><%= @user.name %></p>
-  <p><%= @user.introduction %></p>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
-</div>
+<%= render 'info&new', user: @user, book: @book %>
 
 <div>
   <%= flash[:notice] %>
