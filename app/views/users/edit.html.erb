@@ -7,17 +7,27 @@
   </ul>
 <% end %>
 
-<%= form_with model: @user do |f| %>
-  <h4>profile image</h4>
-  <%= f.file_field :profile_image, placeholder: "プロフィールimage", accept: "image/*" %>
-  <div class="field">
-    <h4>name</h4>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row">
+    <div class="coi-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <label for="user_name">Name</label>
+          <%= f.text_field :name, class:"form-control name" %>
+        </div>
+        <div class="form-group">
+          <label for="user_image">Image</label>
+          <%= f.file_field :profile_image, placeholder: "プロフィールimage", accept: "image/*", class:"form-control-file user_image" %>
+        </div>
+        <div class="form-group">
+          <label for="user_introduction">Introduction</label>
+          <%= f.text_area :introduction, class:"form-control introduction" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Update User', class:"btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <h4>introdution</h4>
-    <%= f.text_area :introdution %>
-  </div>
-
-  <%= f.submit 'Update User' %>
-<% end %>
+</div>
