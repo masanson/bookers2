@@ -1,6 +1,4 @@
-<div>
-  <%= flash[:notice] %>
-</div>
+<p><%= flash[:notice] %></p>
 
 <% if @book.errors.any? %>
     <%= @book.errors.count %> errors prohibited this obj from being saved:
@@ -11,28 +9,34 @@
     </ul>
 <% end %>
 
-<%= render 'users/info&new', user: @user, book: @book_new %>
-
-<h1 class="B-head">Books</h1>
-<table>
-  <thead>
-    <tr>
-      <th colspan="1"></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <% @books.each do |book| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= link_to user_path(book.user.id) do %>
-            <%= image_tag book.user.get_profile_image(100, 100) %>
-          <% end %>
-        </td>
-        <td> <%= link_to book.title, book_path(book.id) %></td>
-        <td><%= book.body %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%= render 'users/info&new', user: @user, book: @book_new %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(book.user.id) do %>
+                <%= image_tag book.user.get_profile_image(100, 100) %>
+              <% end %>
+            </td>
+            <td><%= link_to book.title, book_path(book.id) %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
